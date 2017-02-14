@@ -23,5 +23,8 @@
     </div>
   </div>
 </footer>
-</body>
-</html>
+<script type="text/javascript" src="public/js/jquery.js"> </script>
+<script type="text/javascript" src="public/js/materialize.min.js"> </script>
+<script type="text/javascript">
+$(".button-collapse").sideNav();  
+</script>

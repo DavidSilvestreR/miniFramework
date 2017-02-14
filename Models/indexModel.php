@@ -1,13 +1,15 @@
 <?php
-/**
- *
- */
+
 class indexModel extends Conexion
 {
+  function __construct(){
 
-  function verProducto(){
-   $this->query="SELECT * FROM personas";
-   $this->getQuery($this->query); 
+  }
+
+  public function verProducto(){
+   $this->query="SELECT * FROM description";
+   $this->getQuery($this->query);
+   return $this->array;
   }
 }
 

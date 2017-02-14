@@ -5,21 +5,22 @@ class Conexion
   private $user=USSER;
   private $pasword=PASSWORD;
   private $db=DB;
+  private $sentencia;
   private $conexion;
   protected $query;
   protected $array;
 
-  public function conection()
+   function conection()
   {
     try {
-     $this->conexion=ew PDO("mysql:host={$this->localhots};dbname={$this->db}","{$this->user}","{$this->pasword}");
-     echo "conexion realizada";
+     $this->conexion=new PDO("mysql:host={$this->localhots};dbname={$this->db}","{$this->user}","{$this->pasword}");
+
     } catch (PDOException  $e) {
       echo 'Error!: ' . $e->getMessage() . PHP_EOL;
     }
   }
   public function query(){
-    $this->conection()
+    $this->conection();
     $sentencia = $this->conexion->prepare($this->query);
     $sentencia->execute();
     $cuenta=$sentencia->rowCount();
@@ -32,11 +33,14 @@ class Conexion
     }
   }
   public function getQuery(){
-    $this->conection();
+
     if ($this->query) {
-      $sentencia = $this->conexion->prepare($this->query);
-      $resultado=$sentencia->execute();
+      $this->conection();
+      $sentencia =$this->conexion->prepare($this->query);
+      $sentencia->execute();
+      $resultado=$sentencia->fetchAll();
       if ($resultado) {
+
         $this->array=$resultado;
       }
     }

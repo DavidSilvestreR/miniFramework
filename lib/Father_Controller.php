@@ -3,6 +3,7 @@ class Father_Controller
 {
   private $class;
   private $vista;
+  protected $model;
   function __construct($class,$vista){
 
     $this->class=$class;
@@ -18,12 +19,12 @@ class Father_Controller
     return $this->vista;
   }
   function loadModel(){
-     $model=$this->class."Model.php";
+     $model=$this->class."Model";
      $file="Models/".$this->class."Model.php";
      if(file_exists($file)){
        require_once $file;
-       if (class_exists($model)){
-         $this->model=new $model();
+       if (class_exists($this->class,$model)){         
+          $this->model=new $model();
        }
      }
   }
